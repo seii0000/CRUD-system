@@ -10,6 +10,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
 
+    // Validate input
+    if(!empty($title) && !empty($description)){
     // Prepare an insert statement
     $sql = "INSERT INTO tasks (title, description) VALUES (?, ?)";
 
@@ -33,6 +35,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
      
     // Close statement
     $stmt->close();
+        } else {
+            echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+        }
+    } else {
+        echo "Title and description cannot be empty.";
+    }
     
     // Close connection
     $conn->close();
