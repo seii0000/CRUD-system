@@ -26,10 +26,12 @@
                     require_once "dbconfig.php";
 
                     // Check existence of success message
-                    if(isset($_SESSION['success_message'])){
-                        echo '<div class="alert alert-success">' . $_SESSION['success_message'] . '</div>';
-                        unset($_SESSION['success_message']);
-                    }
+                    $successMessages = ['success_message', 'success_update_message'];
+                    foreach ($successMessages as $successMessage) {
+                        if (isset($_SESSION[$successMessage])) {
+                            echo '<div class="alert alert-success">' . $_SESSION[$successMessage] . '</div>';
+                            unset($_SESSION[$successMessage]);
+                        }
 
                     //Check existence of success update message 
                     if(isset($_SESSION['success_update_message'])){
@@ -39,7 +41,7 @@
 
 
                     // Attempt select query execution
-                    $sql = "SELECT * FROM tasks";
+                    $sql = "SELECT id, title, description FROM tasks";
                     if($result = $conn->query($sql)){
                         if($result->num_rows > 0){
                             echo '<table class="table table-bordered table-striped">';
