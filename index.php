@@ -81,6 +81,10 @@
             </div>
         </div>
     </div>
+
+    <div class="wrapper">
+        <h1><a href="index1.php">Weather App</a></h1>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
